@@ -8,6 +8,7 @@
 ?>
 <form class="form-signin" method="post" accept-charset="utf-8"/>
             <h2>Introduce tus datos</h2>
+            <?= isset($mensaje)? $mensaje : "" ?>
             <div>
                 <label for="inputUsuario">Usuario</label>
                 <input name="usuario" type="text" id="inputUsuario"  placeholder="Usuario" value="<?php echo set_value('usuario'); ?>">
