@@ -11,87 +11,81 @@ class Problema1 extends CI_Controller{
 
     public function index()
     {
+        //Las reglas esta en el archivo form_validation en la carpeta config
 
-        if ($this->form_validation->run('registro') == FALSE)
+        $this->datos_cuerpo['options']=array(
+            'Seleccione uno'=>'seleccione',
+            'Coche'=>'coche',
+            'Furgoneta'=>'furgoneta',
+            'Camion'=>'caminon'
+        );
+        if ($this->form_validation->run('problema1') == FALSE)
         {
-            $this->datos['mensaje']=validation_errors();
+            $this->datos_cuerpo['mensaje']=validation_errors();
         }
-        $this->load->view('formulario',$this->datos);
+        else
+        {
+            $this->datos['tmpl_menu']='Los datos se han introducido correctamente';
+        }
+
+        $this->datos['tmpl_cuerpo']= $this->load->view('formulario',$this->datos_cuerpo,true);
+        $this->load->view('problema1',$this->datos);
     }
 
 
 
 
-    function  validarUsuario($input)
+    function  validarPasajero($input)
     {
-        if (preg_match('/^[a-zA-Z0-9üÜáéíóúÁÉÍÓÚñÑ]+[@\.a-zA-Z0-9üÜáéíóúÁÉÍÓÚñÑ@_\-ª]*$/',$input))
+        if ($this->input->post('tipo')==1)
+        {
+            if (preg_match('/^[0-4]$/',$input))
+            {
+                return TRUE;
+            }
+            else
+            {
+                $this->form_validation->set_message('validarPasajero','Los coches solo pueden tener entre 0 y 4 pasajeros');
+                return FALSE;
+            }
+        }
+        if ($this->input->post('tipo')==2)
+        {
+            if (preg_match('/^[0-8]$/',$input))
+            {
+                return TRUE;
+            }
+            else
+            {
+                $this->form_validation->set_message('validarPasajero','Las furgonetas solo pueden tener entre 0 y 8 pasajeros');
+                return FALSE;
+            }
+        }
+        if ($this->input->post('tipo')==3)
+        {
+            if (preg_match('/^[0]$/',$input))
+            {
+                return TRUE;
+            }
+            else
+            {
+                $this->form_validation->set_message('validarPasajero','Los camiones no pueden tener pasajeros');
+                return FALSE;
+            }
+        }
+
+    }
+    function  validarTipo($input)
+    {
+        if (preg_match('/^[1-3]$/',$input))
         {
             return TRUE;
         }
         else
         {
-            $this->form_validation->set_message('validarUsuario','El campo %s solo puede contener letras, numeros y los caracteres (_ @ - . ª )');
+            $this->form_validation->set_message('validarTipo','Debe seleccionar una opcion para el campo %s.');
             return FALSE;
         }
     }
-    function  validarNombre($input)
-    {
-        if (preg_match('/^[a-zA-ZüÜáéíóúÁÉÍÓÚñÑ ]+[a-zA-ZüÜáéíóúÁÉÍÓÚñÑª\. ]*$/',$input))
-        {
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('validarNombre','El campo %s solo puede contener letras, numeros y los caracteres (ª .)');
-            return FALSE;
-        }
-    }
-    function  validarDireccion($input)
-    {
-        if (preg_match('/^[a-zA-Z0-9üÜáéíóúÁÉÍÓÚñÑ ]+[a-zA-Z0-9 üÜáéíóúÁÉÍÓÚñÑºª\/.-]*$/',$input))
-        {
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('validarDireccion','El campo %s solo puede contener letras, numeros y los caracteres (º ª / . -)');
-            return FALSE;
-        }
-    }
-    function  validarCp($input)
-    {
-        if (preg_match('/^0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}$/',$input))
-        {
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('validarCp','El campo %s no es valido');
-            return FALSE;
-        }
-    }
-    function  validarDni($input)
-    {
-        if (preg_match('/^\d{8}[-]?[A-Za-z]{1}$/',$input))
-        {
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('validarDni','El campo %s no es valido');
-            return FALSE;
-        }
-    }
-    function  validarPassword($input)
-    {
-        if (preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).[a-zA-Z0-9üÜáéíóúÁÉÍÓÚñÑ ]*$/',$input))
-        {
-            return TRUE;
-        }
-        else
-        {
-            $this->form_validation->set_message('validarPassword','El campo %s debe contener al menos una letra mayuscula, una minuscula y un numero');
-            return FALSE;
-        }
-    }
+
 } 

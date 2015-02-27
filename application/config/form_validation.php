@@ -7,31 +7,21 @@
  */
 
 $config = array(
-    'registro'=>array(
+    'problema1'=>array(
         array(
-            'field' => 'usuario',
-            'label' => 'Usuario',
-            'rules' => 'required|min_length[6]|callback_validarUsuario'
+            'field' => 'matricula',
+            'label' => 'Matricula',
+            'rules' => 'required|min_length[4]|trim'
         ),
         array(
-            'field' => 'mail',
-            'label' => 'Email',
-            'rules' => 'valid_email'
+            'field' => 'tipo',
+            'label' => 'Tipo de vehiculo',
+            'rules' => 'callback_validarTipo'
         ),
         array(
-            'field' => 'apellidos',
-            'label' => 'Apellidos',
-            'rules' => 'required|callback_validarNombre'
-        ),
-        array(
-            'field' => 'direccion',
-            'label' => 'Direccion',
-            'rules' => 'required|callback_validarDireccion'
-        ),
-        array(
-            'field' => 'provincias_id_provincia',
-            'label' => 'Provincia',
-            'rules' => 'required|numeric|less_than[53]|graeter_than[0]'
+            'field' => 'pasajeros',
+            'label' => 'Pasajeros',
+            'rules' => 'numeric|callback_validarPasajero'
         ),
       ),
     'login'=>array(

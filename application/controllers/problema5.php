@@ -11,7 +11,15 @@ class Problema5 extends CI_Controller{
 
     public function index()
     {
-        $this->load->view('problema5');
+        $cursos=simplexml_load_file("cursos.xml");
+        foreach ($cursos as $curso)
+        {
+            if($curso->category==7)
+            {
+               echo $curso->fullname.'</br>';
+            }
+        }
+
     }
 
 } 

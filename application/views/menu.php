@@ -76,6 +76,7 @@
 		<a href="<?=BASEURL?>index.php/problema4">Problema 4</a><br/>
 		<a href="<?=BASEURL?>index.php/problema5">Problema 5</a><br/>
 		<a href="<?=BASEURL?>index.php/problema6">Problema 6</a><br/>
+        <a href="<?=BASEURL?>index.php/problema7">Problema 7</a><br/>
 
 	</div>
 </div>

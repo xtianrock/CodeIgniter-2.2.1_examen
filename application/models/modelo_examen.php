@@ -13,4 +13,10 @@ class Modelo_examen extends CI_Model{
         parent::__construct();
         $this->load->database('default');
     }
+
+
+    public function getPaises()
+    {
+       return $this->db->select('id,nombre,continente')->from('paises')->get()->result();
+    }
 }
