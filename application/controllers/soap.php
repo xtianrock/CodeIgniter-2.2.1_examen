@@ -14,14 +14,18 @@ class Soap extends CI_Controller{
         $client = new SoapClient("http://footballpool.dataaccess.eu/data/info.wso?wsdl");
 
 
-        $result = $client->Coaches();
-
         // Note that $array contains the result of the traversed object structure
+        $datos = array(
+            'titulo' => 'Mi Titulo',
+            'encabezado' => 'Mi Encabezado',
+            'mensaje' => 'Mi Mensaje'
+        );
         $datos=array(
-            $entrenadores = $result->CoachesResult->tCoaches
+            'entrenadores'=>$client->Coaches()->CoachesResult->tCoaches
         );
 
-        $this->load->view('soap'$datos);
+        //print_r($entrenadores);
+        $this->load->view('soap',$datos);
     }
 
 } 

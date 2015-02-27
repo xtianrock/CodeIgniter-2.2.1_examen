@@ -8,15 +8,21 @@
 
 <div id="container">
 	<h1>Problema 6</h1>
-    <?php foreach ($entrenadores as $item):
-
-        if (set_value('provincias_id_provincia')==$item['id_provincia']):?>
-            <option value="<?=$item['id_provincia']?>" selected><?=$item['nombre_provincia']?></option>
-        <?php else: ?>
-            <option value="<?=$item['id_provincia']?>"><?=$item['nombre_provincia']?></option>
-        <?php endif ?>
-
-    <?php endforeach ?>
+    <h1>Entrenadores Mundial Sudafrica 2010</h1>
+    <table border="1">
+        <tr>
+            <th>Bandera</th>
+            <th>Pais</th>
+            <th>Entrenador</th>
+        </tr>
+        <?php  foreach($entrenadores as $info) : ?>
+            <tr>
+                <td><img src="<?=$info->TeamInfo->sCountryFlag?>"/></td>
+                <td><?=$info->TeamInfo->sName?></td>
+                <td><?=$info->sName?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </div>
 
 </body>

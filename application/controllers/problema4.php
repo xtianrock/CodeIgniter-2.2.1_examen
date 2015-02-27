@@ -1,4 +1,4 @@
-problema1.php<?php
+<?php
 /**
  * Created by PhpStorm.
  * User: 2DAWT

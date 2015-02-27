@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/examen/';
+$config['base_url']	= 'http://localhost/examenPhp/';
 define ('BASEURL',$config['base_url']);
 /*
 |--------------------------------------------------------------------------
